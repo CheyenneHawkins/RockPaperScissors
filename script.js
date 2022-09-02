@@ -8,8 +8,12 @@ let computerscore = 0;
 let counter;
 const pushbutton = document.getElementById("playButton");
 
-pushbutton.addEventListener("click", function playround() {
+pushbutton.addEventListener("click", function (buttonclick){playround()})
+
+
+function playround() {
     playerword = (prompt("Go!", " "));
+    playerword = playerword.toLowerCase();
 
     switch (playerword) { //assigns player's number to item name
         case "rock":
@@ -69,8 +73,8 @@ pushbutton.addEventListener("click", function playround() {
     console.log(computernum)
     console.log("Computer: " + computerword)
 
-    console.log(outcome)
-});
+    console.log(outcome);
+}
 
 
-// playround();
+
