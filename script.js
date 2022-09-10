@@ -1,3 +1,4 @@
+let hide = true;
 let entry;
 let playernum = 0;
 let computernum = 0;
@@ -11,124 +12,302 @@ let win;
 let lose;
 let tie;
 let outcome;
-let rounds = 5;
+let rounds = 3;
+let gamestatus = false;
+const overlaytime = 500;
+separator.textContent = 'VS'
+start.textContent = `BATTLE START`
+stage.style.display = "none";
+announce.style.display = "none";
+const padgrow = "150px";
+const paddef = "50px";
+function waste (){
+    let bump=4;
+    return bump
+    console.log()
+}
+// reff.style.width = "1800px";
 
-const pushbutton = document.getElementById("playButton");
+
+function initializeFight () {
+    announce.style.display = "flex";
+    // reff.style.width = "100px";
+    start.textContent = `FIGHT!!!`
+    btnr.style.display = 'block';
+    btnp.style.display = 'block';
+    btns.style.display = 'block';
+    btnr.style.padding = '50px';
+    btnp.style.padding = '50px';
+    btns.style.padding = '50px';
+    btnr.style['background-image'] = "url(https://imageio.forbes.com/specials-images/imageserve/5f5ebdfe1a1834b803586841/Dwayne--The-Rock--Johnson-Project-Rock-launch-with-Under-Armour-and-Spotify/960x0.jpg)";
+    btnp.style['background-image'] = "url(https://www.skillastics.com/wp-content/uploads/2020/03/left-over-money-1024x576.jpg)";
+    btns.style['background-image'] = "url(https://1.bp.blogspot.com/-ttMK5fIHUQw/VHhRyfIOnUI/AAAAAAAAAUk/26mKnsjf6M8/s1600/edward_scissorhands.png)";
+    compr.style.display = 'block';
+    compp.style.display = 'block';
+    comps.style.display = 'block';
+    compr.style.padding = '50px';
+    compp.style.padding = '50px';
+    comps.style.padding = '50px';
+    compr.style['background-image'] = "url(https://i.pinimg.com/736x/57/9a/44/579a44e97b265bb15736abcd2f0d96c1.jpg)";
+    compp.style['background-image'] = "url(https://www.mybanktracker.com/news/wp-content/uploads/2016/02/cash.jpg)";
+    comps.style['background-image'] = "url(https://1.bp.blogspot.com/-CrsniLoWksI/VXj9tUcSHTI/AAAAAAAAOAA/ztuounMx8iY/s1600/Edward%2BScissorhands%2B1.jpg)";
+    arenau.style['background-image'] = "url()";
+    arenac.style['background-image'] = "url()";
+    arenau.style.width = "50%";
+    arenac.style.width = "50%";
+    arenau.style['background-position'] = "700px";
+    arenac.style['background-position'] = "-700px";
 
 
-pushbutton.addEventListener("click", function (buttonclick){playgame()}) //game start
 
+}
+function gifFight () {
+    arenau.style.width = "50%";
+    arenac.style.width = "50%";
+    btnr.style.padding = '30px';
+    btnp.style.padding = '30px';
+    btns.style.padding = '30px';
+    compr.style.padding = '30px';
+    compp.style.padding = '30px';
+    comps.style.padding = '30px';
+    // arenau.style['background-position'] = "700px";
+    // arenac.style['background-position'] = "-700px";
 
-function playgame() {                       //assign round counter, call playround
-    for (i = 0; i < rounds; i++) {              
-        playround();
-     }
 }
 
-function getinputbutton() {
-    if (i == 0) {
-        console.clear();
-        playerword = (prompt("Best of " + rounds + " wins. \n \n Round " + (i +1) + " - Go!", " "));
-        console.log("Round" + (i+1));
-    } else {playerword = (prompt("Round " + (i +1) + " - Go!", " "));
-    console.log("Round" + (i+1));
-    }
+
+//function flow: playGame --> playRound --> getComputerChoice --> battle --> score
+
+if (hide) { //hide start, button section
+const start = document.querySelector("#start"); //banner start
+start.addEventListener('click', playGame);
+
+
+const rock = document.querySelector("#btnr");
+rock.addEventListener('click',rockSelect);
+
+
+function rockSelect () {
+    playerword = "ROCK";
+    btnp.style.display = 'none';
+    btns.style.display = 'none';
+    btnr.style.padding = padgrow;
+    // btnr.style['background-image'] = "url(https://media.giphy.com/media/l0HUg6Ypas42ubkXu/giphy.gif)";
+    arenau.style['background-image'] = "url(https://media.giphy.com/media/l0HUg6Ypas42ubkXu/giphy.gif)";
+    arenau.style['background-size'] = "350%";
+    arenau.style['background-position'] = "-200px";
+
+    playRound();
+    // nextRound();
+
 }
 
-function getinputbox() {
-    if (i == 0) {
-        console.clear();
-        playerword = document.getElementById("playerinput").value;
-        console.log("Round" + (i+1));
-    } else {playerword = (prompt("Round " + (i +1) + " - Go!", " "));
-    console.log("Round" + (i+1));
+const paper = document.querySelector("#btnp");
+paper.addEventListener('click',paperSelect);
+
+function paperSelect () {
+    playerword = "PAPER";
+    btnr.style.display = 'none';
+    btns.style.display = 'none';
+    btnp.style.padding = padgrow;
+    // btnp.style['background-image'] = "url(https://media.giphy.com/media/l41lZccR1oUigYeNa/giphy.gif)";
+    arenau.style['background-image'] = "url(https://media.giphy.com/media/l41lZccR1oUigYeNa/giphy.gif)";
+    arenau.style['background-size'] = "350%";
+    arenau.style['background-position'] = "-200px";
+
+    playRound();
+    // nextRound();
+}
+
+const scissors = document.querySelector("#btns");
+scissors.addEventListener('click',scissorsSelect);
+
+
+function scissorsSelect () {
+    playerword = "SCISSORS";
+    btnr.style.display = 'none';
+    btnp.style.display = 'none';
+    btns.style.padding = padgrow;
+    // btns.style['background-image'] = "url(https://media.giphy.com/media/3og0IKMmOZE88Ankty/giphy.gif)";
+    arenau.style['background-image'] = "url(https://media.giphy.com/media/3og0IKMmOZE88Ankty/giphy.gif";
+    arenau.style['background-size'] = "350%";
+    arenau.style['background-position'] = "-200px";
+
+    playRound();
+    // nextRound();
+
+}
+} //button secion end
+
+function showOverlay() {
+    overlay.style.display = 'block';
+    overlay.textContent = `ROUND ${i+1}`
+    function hideOverlay(){
+        overlay.style.display = 'none';
     }
+    setTimeout(hideOverlay, overlaytime);
+}
+
+function nextRound() {
+    // setTimeout(initializeFight,3000);
+    console.log("FIGHT INITIALIZE");
 
 }
 
-function playround() {
-    getinputbutton();
-    if (playerword != null) {               //skips lower case translation if null
-        playerword = playerword.toUpperCase();
-    } else {                                //exits game
-        playerword = 0;
-        i = 5;
-        return;
-    }
+function playGame() {  
+    i = 0; 
+    console.clear();
+    console.log("Let's play!");
+    stage.style.display = 'flex';    // while (i < rounds){
+    showOverlay();   
+    initializeFight();
+     
+}
+
+function showChoice() {
     switch (playerword) {                   //assigns player's number to item name
         case "ROCK":
-            playernum = 1;
+            user.textContent = 'ROCK!' 
             break;
         case "PAPER":
-            playernum = 2;
+            user.textContent = 'PAPER!' 
             break;
         case "SCISSORS":
-            playernum = 3;
-            break;
-        default:
-            alert("THAT'S NOT HOW YOU PLAY")
+            user.textContent = 'SCISSORS!' 
             break;
     };
 
-    function getComputerChoice(min, max) {  //generates random number 1, 2, or 3
-        computernum = Math.floor(Math.random() * (max - min) ) + min;
-        return computernum
-    }
 
-    switch (getComputerChoice(1,4)) {       //assigns computer number to item name
-        case 1:
-            computerword = "ROCK";
-            break;
-        case 2:
-            computerword = "PAPER";
-            break;
-        case 3:
-            computerword = "SCISSORS";
-            break;
-        case 4:
-            computerword = "NO!";
-            break;
-        default:
-            break;
-    };
+}
 
-    function battle() {                     //battle logic
-        win = "YOU WIN ROUND " + (i +1) + "!";
-        lose = "YOU LOSE ROUND " + (i +1) + "!";
-        tie = "ROUND " + (i +1) + " IS A TIE.";
-        if ((playernum == 1) && (computernum == 3)) { 
-            outcome = win;
-            playerscore += 1;
-        } else if ((playernum == 3) && (computernum == 1)){
-            outcome = lose;
-            computerscore += 1;
-        } else if (playernum > computernum){
-            outcome = win;
-            playerscore += 1;
-        } else if (playernum == computernum){
-            outcome = tie;
-            i -= 1;
-            alert("Tie! Try again.")
-        } else {
-            outcome = lose;
-            computerscore += 1;
+function playRound() {
+    showChoice();
+    if (i < rounds){                    //assigns player's number to item name
+        switch (playerword) {                   //assigns player's number to item name
+            case "ROCK":
+                playernum = 1;
+                break;
+            case "PAPER":
+                playernum = 2;
+                break;
+            case "SCISSORS":
+                playernum = 3;
+                break;
+            default:
+                // alert("THAT'S NOT HOW YOU PLAY")
+                break;
+            
         };
 
-        
+        function getComputerChoice(min, max) {  //generates random number 1, 2, or 3
+            computernum = Math.floor(Math.random() * (max - min) ) + min;
+            return computernum
+        }
+
+        switch (getComputerChoice(1,4)) {       //assigns computer number to item name
+            case 1:
+                computerword = "ROCK";
+                compp.style.display = 'none';
+                comps.style.display = 'none';
+                compr.style.padding = padgrow;
+                // compr.style['background-image'] = "url(https://media.giphy.com/media/l0HU5bbgdW6qzJsmQ/giphy.gif)";
+                arenac.style['background-image'] = "url(https://media.giphy.com/media/l0HU5bbgdW6qzJsmQ/giphy.gif)";
+                arenac.style['background-size'] = "350%";
+                arenac.style['background-position'] = "-200px";
+                
+                break;
+            case 2:
+                computerword = "PAPER";
+                compr.style.display = 'none';
+                comps.style.display = 'none';
+                compp.style.padding = padgrow;
+                // compp.style['background-image'] = "url(https://media.giphy.com/media/3o751XDbTvZw958ZYk/giphy.gif)";
+                arenac.style['background-image'] = "url(https://media.giphy.com/media/3o751XDbTvZw958ZYk/giphy.gif)";
+                arenac.style['background-size'] = "350%";
+                arenac.style['background-position'] = "-200px";
+                break;
+            case 3:
+                computerword = "SCISSORS";
+                compr.style.display = 'none';
+                compp.style.display = 'none';
+                comps.style.padding = padgrow;
+                // comps.style['background-image'] = "url(https://media.giphy.com/media/3og0IKMmOZE88Ankty/giphy.gif)";
+                arenac.style['background-image'] = "url(https://media.giphy.com/media/3og0IKMmOZE88Ankty/giphy.gif)";
+                arenac.style['background-size'] = "350%";
+                arenac.style['background-position'] = "-200px";
+                break;
+            case 4:
+                computerword = "NO!";
+                break;
+            default:
+                break;
+        };
+        setTimeout(gifFight,1800);
+        function battle() {                     //battle logic, increments i
+            win = "YOU WIN ROUND " + (i +1) + "!";
+            lose = "YOU LOSE ROUND " + (i +1) + "!";
+            tie = "ROUND " + (i +1) + " IS A TIE.";
+
+            if ((playernum == 1) && (computernum == 3)) { 
+                outcome = win;
+                arenau.style.width = "100%";
+                arenac.style.width = "0%";
+                playerscore += 1;
+            } else if ((playernum == 3) && (computernum == 1)){
+                outcome = lose;
+                arenac.style.width = "100%";
+                arenau.style.width = "0%";
+                computerscore += 1;
+            } else if (playernum > computernum){
+                outcome = win;
+                arenau.style.width = "100%";
+                arenac.style.width = "0%";
+                playerscore += 1;
+            } else if (playernum == computernum){
+                outcome = tie;
+                i -= 1;
+                // alert("Tie! Try again.")
+            } else {
+                outcome = lose;
+                arenac.style.width = "100%";
+                arenau.style.width = "0%";
+                computerscore += 1;
+            };
+            i += 1;
+        }  
+    setTimeout(battle,4000)      
+ 
+
+    } else {   //if rounds are done
+        alert("GAME OVER");
     }
-
-    battle();
-
-    function score(){
+    function showScore(){
         if (outcome != tie){
         console.log("--" + playerword + " vs " + computerword);
         console.log(outcome);
-        if (i < (rounds-1)) {
+        if (i < (rounds)) {
         console.log("Score: " + playerscore + " to " + computerscore);
         } else {
         console.log("Final Score: " + playerscore + " to " + computerscore);
         }
         }
+
     }
-    score();
+    showScore();
+
+    // setTimeout(initializeFight,3000);
+    }
+
+
+function startAlert() {
+    if (i == 0) {
+        console.clear();
+        (alert("Best of " + rounds + " wins. \n \n Round " + (i +1) + " - Go!", " "));
+        console.log("Round" + (i+1));
+    } else {
+        // (alert("Round " + (i +1) + " - Go!", " "));
+        // console.log("Round" + (i+1));
+    }
 }
+
+

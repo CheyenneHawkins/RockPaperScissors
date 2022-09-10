@@ -8,13 +8,50 @@
     <title>Rock Paper Scissors UI</title>
 </head>
 <body>
-    <button id= "playButton" type="button">LET'S PLAY!</button>
-    <br>
-    <br>
-    <!-- <button id= "writeButton" type="button">WRITE TEST</button>
-    <br>
-    <br>
-    <input type="text"  placeholder="Rock Paper Scissors" id="playerinput"> -->
+    <div id="overlay">
+    </div>
+   <div class="container">
+        <div class="battlestart" id="start">
+            
+        </div>
+        <div class="stage" id="stage">
+            <div class="btnz circles" id="controls">
+                <div id="btnr">
+                </div>
+                <div id="btnp">
+                </div>
+                <div id="btns">
+                </div>
+            </div>
+            <div class="ref" id="reff">
+                <div class="arenau" id="arenau"></div>
+                <div class="arenac" id="arenac"></div>
+            </div>
+            <div class="comp circles" id="compcontrols">
+                <div id="compr">
+                </div>
+                <div id="compp">
+                </div>
+                <div id="comps">
+                </div>
+            </div>
+        </div>
+        <div class="announce" id="announce">
+            <div id="user">
+
+            </div>
+            <div id="separator">
+
+            </div>
+            <div id="computer">
+
+            </div>
+        </div>
+        <div class="scoreboard">
+
+        </div>
+
+   </div>
 
     <script src="script.js">
     </script>
